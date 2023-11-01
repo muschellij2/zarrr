@@ -5,11 +5,14 @@
 #' default value of None will attempt to infer the version from store if
 #' possible, otherwise it will fall back to 2.
 #' @param zarr_path The path within the group where the arrays will be saved.
+#' @param ... not currently used.
 #'
-#' @return
+#' @return The output from `zarr.load`
 #' @export
 #'
 #' @examples
+#' file = system.file("extdata/example.zip", package = "zarrr")
+#' out = read_zarr(file)
 read_zarr = function(file, zarr_version = NULL, zarr_path = NULL) {
   zarr = zarr_base()
   out = zarr$load(store = file,
@@ -18,6 +21,7 @@ read_zarr = function(file, zarr_version = NULL, zarr_path = NULL) {
 }
 
 #' @rdname read_zarr
+#' @param x object to save into the `zarr` file
 #' @export
 write_zarr = function(x, file, zarr_version = NULL, zarr_path = NULL, ...) {
   zarr = zarr_base()
